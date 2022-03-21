@@ -1,0 +1,33 @@
+--- 
+- 
+  become: true
+  hosts: node1
+  name: "Install Apache on Node1"
+  tasks: 
+    - 
+      name: "Install Apache"
+      yum: 
+        name: httpd
+        state: present
+    - 
+      name: "Start service"
+      service: 
+        enabled: true
+        name: httpd
+        state: started
+- 
+  become: true
+  hosts: node2
+  name: "Install NGINX on node2"
+  tasks: 
+    - 
+      name: "install NGINX"
+      yum: 
+        name: nginx
+        state: present
+    - 
+      name: "Start Nginx"
+      service: 
+        enabled: true
+        name: nginx
+        state: started
